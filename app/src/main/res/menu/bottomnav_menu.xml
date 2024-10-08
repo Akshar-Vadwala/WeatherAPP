@@ -3,18 +3,22 @@
 
     <item
         android:id="@+id/temperature"
-        android:title="Temperature" />
+        android:title="Temperature"
+        android:icon="@drawable/ic_temperature" />
 
     <item
         android:id="@+id/humidity"
-        android:title="Humidity" />
+        android:title="Humidity"
+        android:icon="@drawable/ic_humidity" />
 
     <item
         android:id="@+id/precipitation"
-        android:title="Precipitation" />
+        android:title="Precipitation"
+        android:icon="@drawable/ic_precipitation" />
 
     <item
         android:id="@+id/pressure"
-        android:title="Pressure" />
-</menu>
+        android:title="Pressure"
+        android:icon="@drawable/ic_pressure" />
 
+</menu>

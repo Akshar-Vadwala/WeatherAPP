@@ -11,29 +11,40 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class RegisterActivity extends AppCompatActivity {
 
+    DatabaseHelper databaseHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        EditText usernameEditText = findViewById(R.id.username_edit_text);
-        EditText passwordEditText = findViewById(R.id.password_edit_text);
+        databaseHelper = new DatabaseHelper(this);
+
+        EditText emailEditText = findViewById(R.id.email);
+        EditText phoneEditText = findViewById(R.id.phone);
+        EditText usernameEditText = findViewById(R.id.username);
+        EditText passwordEditText = findViewById(R.id.password);
         Button registerButton = findViewById(R.id.register_button);
 
         registerButton.setOnClickListener(v -> {
+            String email = emailEditText.getText().toString();
+            String phone = phoneEditText.getText().toString();
             String username = usernameEditText.getText().toString();
             String password = passwordEditText.getText().toString();
 
-            // Perform registration logic here
-            // For simplicity, we will just show a success message and navigate to HomeActivity
-            if (!username.isEmpty() && !password.isEmpty()) {
-                // Registration successful, navigate to HomeActivity
-                Toast.makeText(RegisterActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
-                startActivity(intent);
-                finish(); // Close the RegisterActivity
+            if (!username.isEmpty() && !password.isEmpty() && !email.isEmpty() && !phone.isEmpty()) {
+                // Insert data into SQLite database
+                boolean isInserted = databaseHelper.insertData(username, password, email, phone);
+                if (isInserted) {
+                    Toast.makeText(RegisterActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
+                    intent.putExtra("USERNAME", username);
+                    startActivity(intent);
+                    finish(); 
+                } else {
+                    Toast.makeText(RegisterActivity.this, "Registration Failed", Toast.LENGTH_SHORT).show();
+                }
             } else {
-                // Registration failed, display an error message
                 Toast.makeText(RegisterActivity.this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
             }
         });

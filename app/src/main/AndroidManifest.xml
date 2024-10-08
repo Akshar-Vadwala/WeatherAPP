@@ -37,6 +37,11 @@
             android:name=".RegisterActivity"
             android:exported="true" />
 
+        <!-- ProfileActivity declaration -->
+        <activity
+            android:name=".ProfileActivity"
+            android:exported="true" />
+
     </application>
 
 </manifest>

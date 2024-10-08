@@ -11,33 +11,37 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
+    DatabaseHelper databaseHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        EditText usernameEditText = findViewById(R.id.username_edit_text);
-        EditText passwordEditText = findViewById(R.id.password_edit_text);
-        Button loginButton = findViewById(R.id.login_button);
+        databaseHelper = new DatabaseHelper(this);
 
+        EditText usernameEditText = findViewById(R.id.username);
+        EditText passwordEditText = findViewById(R.id.password);
+        Button loginButton = findViewById(R.id.login_button);
         Button registerButton = findViewById(R.id.register_button);
+
         registerButton.setOnClickListener(v -> {
             // Navigate to the RegisterActivity when the register button is clicked
             Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
             startActivity(intent);
         });
 
-
         loginButton.setOnClickListener(v -> {
             String username = usernameEditText.getText().toString();
             String password = passwordEditText.getText().toString();
 
-            // Perform login logic here
-            // You can add your own authentication mechanism or use a third-party service
-            if (username.equals("admin") && password.equals("password")) {
-                // Login successful, navigate to the next activity
+            // Check if the username and password are valid
+            if (databaseHelper.checkUser(username, password)) {
+                // Login successful
                 Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                intent.putExtra("USERNAME", username);
                 startActivity(intent);
+                finish();
             } else {
                 // Login failed, display an error message
                 Toast.makeText(LoginActivity.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
