@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+<!-- Main color palette -->
+<color name="my_primary">#3B7E88</color>
+<color name="my_primary_container">#326A71</color>
+<color name="my_primary_dark">#2D6168</color>
+<color name="my_secondary">#72A7AC</color>
+<color name="my_tertiary">#4A939F</color>
+<color name="white">#FFFFFF</color>
 </resources>

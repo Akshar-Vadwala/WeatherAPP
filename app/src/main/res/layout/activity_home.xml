@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/app_background"
     tools:context=".HomeActivity">
 
     <LinearLayout
@@ -10,32 +11,37 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="32dp">
+        android:layout_marginTop="32dp"
+        android:gravity="center_vertical">
 
         <TextView
             android:id="@+id/username_label"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Hello, "
-            android:textSize="24sp"
-            android:textStyle="bold"
+            android:layout_height="48dp"
             android:layout_marginStart="16dp"
             android:layout_weight="1"
-            android:gravity="start" />
+            android:gravity="start|center_vertical"
+            android:text="Hello, "
+            android:textColor="@color/white"
+            android:textSize="26sp"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/profile_button"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginEnd="16dp"
+            android:backgroundTint="@color/my_primary_dark"
             android:text="Profile"
-            android:layout_marginEnd="16dp" />
+            android:textColor="@color/white" />
     </LinearLayout>
 
     <FrameLayout
         android:id="@+id/fragment_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/bottom_navigation" />
+        android:layout_above="@id/bottom_navigation"
+        android:layout_marginBottom="6dp" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
